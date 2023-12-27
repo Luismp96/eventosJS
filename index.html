@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <title>Eventos en JS</title>
+        <meta charset="utf-8">
+        <!--<style>
+            html,body{
+                height: 100%;
+                width: 100%;
+            }
+        </style> -->
+        <!--<style>
+            #arrastrable{
+                height: 200px;
+                width: 200px;
+                background: red;
+                color: white;
+            }
+            .numero{
+                width: 200px;
+                height: 200px;
+                background: white;
+                color: black;
+                border:1px solid black;
+                display: inline-block;
+            }
+        </style> -->
+        <style>
+            #contenedorvideo{
+                width: 1280px;
+                height: 720px;
+                position: relative;
+            }
+            video{
+                width: 100%;
+                top:0px;
+                left:0px;
+                position: absolute;
+            }
+            #controles{
+                height: 20px;
+                width: 600px;
+                position: absolute;
+                bottom: 10px;
+                left:50%;
+                margin-left:-300px;
+            }
+
+            button{
+                background: none;
+                border:none;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body id="cuerpo">
+
+        <!-- <input type="text" id="campo"> -->
+        <!--<button id="miboton">Púlsame</button> -->
+        <!-- <textarea id="textarea" rows="30" cols="30">
+            Escribe aquí
+        </textarea> -->
+        <!--<div id="arrastrable" draggable="true">
+            Luis Martin Portillo
+        </div> 
+        <div id="uno" class="numero">1</div>
+        <div id="dos" class="numero">2</div>
+        <div id="tres" class="numero">3</div>-->
+        <div id="contenedorvideo">
+            <video src="./multimedia/video.mp4" id="video"></video>
+            <div id="controles">
+                <button id="comenzar">⏯</button>
+                <button id="pausa">⏯</button>
+                <button id="rebobina">⏮	</button>
+                <button id="avanza10">⏩</button>
+                <button id="retrocede10">⏪</button>
+                <button id="volumen">🔊	</button>
+                <button id="silencio">🔇</button>
+                <input type="range" min="0.0" max="1.0" step="0.01" id="controlvolumen">
+            </div>
+        </div>
+        
+        <script>
+            //------------------
+            //UN SOLO CLICK
+            //------------------
+            //document.querySelector("button").onclick = function(){
+            //    alert('Hola Luis');
+            //}
+            //------------------
+            //DOBLE CLICK
+            //------------------
+            //document.querySelector("button").ondblclick = function(){
+            //    alert('Hola Luis');
+            //}
+            //------------------
+            //BOTON DERECHO
+            //------------------
+            //document.getElementById("miboton").oncontextmenu = function(){
+            //    alert('Hola Luis');
+            //    return false;
+            //}
+            //AL PONER CURSOR ENCIMA
+            //document.getElementById("miboton").onmouseover = function(){
+            //    console.log("Has entrado.");
+            //}
+            //AL PULSAR RATON (SOBRE BOTON)
+            //document.getElementById("miboton").onmousedown = function(){
+            //    console.log("Has PULSADO.");
+            //}
+            //AL SOLTAR CLICK EN RATON
+            //document.getElementById("miboton").onmouseup = function(){
+            //    console.log("Has DESPULSADO.");
+            //}
+            //RUEDA DEL RATON
+            //document.getElementById("cuerpo").onmousewheel = function(e){
+            //    if (e.deltaY < 0){
+            //        console.log("Estas rodando la rueda hacia arriba");
+            //    }else{
+            //        console.log("Estas rodando la rueda hacia abajo");
+            //    } 
+            //}
+            //AL MOVER RATON
+            //document.getElementById("cuerpo").onmousemove = function(e){
+            //   console.log(e.pageX + "," + e.pageY);
+            //}
+            //AL PINCHAR EN INPUT
+            //document.getElementById("campo").onfocus = 
+            //function(){
+            //    console.log("Has entrado en el campo");
+            //}
+            //AL SALIR DEL INPUT
+            //document.getElementById("campo").onblur = 
+            //function(){
+            //    console.log("Has salido del campo");
+            //}
+            //AL CAMBIAR VALOR DE INPUT
+            //document.getElementById("campo").onchange = 
+            //function(){
+            //    console.log("Ha cambiado valor");
+            //}
+            //AL PULSAR TECLA
+            //document.getElementById("campo").onkeypress = function(e){
+            //    console.log("Tecla pulsada: " + e.key);
+            //}
+            //AL COPIAR TEXTO
+            //document.getElementById("textarea").oncopy = function (e){
+            //    let textocopiado = window.getSelection().toString();
+            //    console.log("Has copiado: " + textocopiado);
+            //}
+            //ONDRAG (ESTAR ARRASTRANDO)
+            //document.getElementById("arrastrable").ondrag = function(){
+            //    console.log("Lo estas arrastrando");
+            //}
+            //INICIO DE ARRASTRADO
+            //document.getElementById("arrastrable").ondragstart = function(){
+            //    console.log("Lo estas comenzando a arrastrar");
+            //}
+            //FINAL DE ARRASTRADO
+            //document.getElementById("arrastrable").ondragend = function(){
+            //    console.log("Lo has terminado de arrastrar");
+            //}
+            //ARRASTRAR DE CUADRADO A CUADRADO
+            //document.getElementById("arrastrable").ondragend = function(){
+            //    console.log("Lo has terminado de arrastrar");
+            //}
+            //document.getElementById("uno").ondragover = function(){
+            //    console.log("Has arrastrado encima de 1");
+            //}
+            //AL COGER ALGO PARA ARRASTRAR
+            //document.getElementById("uno").ondragover = function(event){
+            //    event.preventDefault();
+            //    console.log("Has arrastrado encima de 1");
+            //}
+            //AL SOLTAR ALGO ENCIMA
+            //document.getElementById("uno").ondrop = function(event){
+            //    event.preventDefault();
+            //    console.log("Lo has soltado en el 1");
+            //
+            //    let elemento = document.getElementById("arrastrable");
+            //    document.getElementById("arrastrable").remove();
+            //    document.getElementById("uno").appendChild(elemento);
+            //}
+            //VIDEOS
+            let video = document.getElementById("video");
+
+            document.getElementById("comenzar").onclick = function(){
+                video.play();
+            }
+            document.getElementById("pausa").onclick = function(){
+                video.pause();
+            }
+            document.getElementById("rebobina").onclick = function(){
+                video.currentTime = 0;
+            }
+            document.getElementById("avanza10").onclick = function(){
+                video.currentTime += 10;
+            }
+            document.getElementById("retrocede10").onclick = function(){
+                video.currentTime -= 10;
+            }
+            document.getElementById("volumen").onclick = function(){
+                video.volume = 1;
+            }
+            document.getElementById("silencio").onclick = function(){
+                video.volume = 0;
+            }
+            document.getElementById("controlvolumen").onchange = function(){
+                video.volume = this.value;
+            }
+        </script>
+    </body>
+</html>
